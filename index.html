@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UI/UX Design Course - Mseed Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #10b981 0%, #10b981 50%, #f7f7f7 50%, #f7f7f7 100%);
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Decorative circles matching poster */
+        .bg-decoration {
+            position: fixed;
+            border-radius: 50%;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        .circle1 {
+            width: 300px;
+            height: 300px;
+            background: #fbbf24;
+            top: -100px;
+            right: -100px;
+            animation: float-circle 6s ease-in-out infinite;
+        }
+        .circle2 {
+            width: 200px;
+            height: 200px;
+            background: #10b981;
+            bottom: -50px;
+            left: -50px;
+            animation: float-circle 8s ease-in-out infinite reverse;
+        }
+        .circle3 {
+            width: 150px;
+            height: 150px;
+            background: #fbbf24;
+            top: 50%;
+            left: 10%;
+            animation: float-circle 10s ease-in-out infinite;
+        }
+        
+        @keyframes float-circle {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.1); }
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .glow-green {
+            text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+        
+        /* Marquee animation */
+        .marquee-container {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+        .marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 30s linear infinite;
+            padding-left: 100%;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        /* Interactive hover effects */
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3);
+        }
+        
+        /* Logo pulse animation */
+        .logo-pulse {
+            animation: logo-pulse 2s ease-in-out infinite;
+        }
+        @keyframes logo-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* Price tag animation - yellow bounce */
+        .price-bounce {
+            animation: price-bounce 1s ease-in-out infinite;
+        }
+        @keyframes price-bounce {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+        
+        /* Module cards with yellow accent */
+        .module-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.3), transparent);
+            transition: 0.5s;
+        }
+        .module-card:hover::before {
+            left: 100%;
+        }
+        .module-card:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.4);
+            border-color: #fbbf24;
+        }
+        
+        /* Green section styling */
+        .green-section {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-left: 5px solid #fbbf24;
+        }
+        
+        /* Yellow highlights */
+        .yellow-highlight {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        }
+        
+        /* Input glow effects */
+        .glow-input:focus {
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
+            border-color: #fbbf24;
+        }
+        
+        /* Button gradient matching poster */
+        .cta-button {
+            background: linear-gradient(135deg, #10b981 0%, #fbbf24 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* Tool icons */
+        .tool-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .tool-icon:hover {
+            transform: scale(1.15) rotate(5deg);
+        }
+        .figma-icon {
+            background: linear-gradient(135deg, #000 0%, #333 100%);
+            color: white;
+        }
+        .ps-icon {
+            background: linear-gradient(135deg, #31A8FF 0%, #0078D4 100%);
+            color: white;
+        }
+        .ai-icon {
+            background: linear-gradient(135deg, #FF9A00 0%, #FF6A00 100%);
+            color: white;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center px-4 py-8">
+
+  <!-- Background decorative circles -->
+  <div class="bg-decoration circle1"></div>
+  <div class="bg-decoration circle2"></div>
+  <div class="bg-decoration circle3"></div>
+
+  <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-2xl hover-lift relative z-10">
+    
+    <!-- Mseed Logo & Header -->
+    <div class="text-center mb-6">
+      <div class="flex justify-center mb-4">
+        <img src="https://static.wixstatic.com/media/76a7aa_4a4e8a5c7d86479484fa4104a06751aa~mv2.png/v1/fill/w_273,h_64,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Add%20a%20subheading%20(1).png" 
+             alt="Mseed Logo" 
+             class="h-20 logo-pulse object-contain" 
+             style="max-width: 400px;" />
+      </div>
+      
+      <div class="text-4xl font-bold text-green-600 glow-green animate-float">
+        Kickstart Your UI/UX Career in 20 Days
+      </div>
+      <p class="text-gray-600 mt-3 text-base leading-relaxed max-w-xl mx-auto">
+        Learn how to design user-friendly websites and mobile apps from scratch using industry-standard tools.
+      </p>
+      <div class="w-24 h-1 yellow-highlight mx-auto mt-3"></div>
+      
+      <div class="mt-4 yellow-highlight text-white px-8 py-4 rounded-lg inline-block price-bounce shadow-xl">
+        <p class="font-black text-4xl" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">Just @ 499/-</p>
+      </div>
+    </div>
+
+    <!-- What You Will Learn Section -->
+    <div class="bg-gradient-to-br from-green-50 to-yellow-50 p-6 rounded-lg mb-6 border-2 border-green-300 hover-lift">
+      <h3 class="font-bold text-green-700 mb-4 text-xl">📚 What You Will Learn</h3>
+      <div class="space-y-2 text-gray-700">
+        <div class="flex items-start gap-3">
+          <span class="text-green-600 font-bold">✓</span>
+          <span>UI vs UX fundamentals</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-green-600 font-bold">✓</span>
+          <span>Design thinking & UX process</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-green-600 font-bold">✓</span>
+          <span>User research & wireframing</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-green-600 font-bold">✓</span>
+          <span>Color theory, typography & layouts</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-green-600 font-bold">✓</span>
+          <span>Mobile app & website UI design</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-green-600 font-bold">✓</span>
+          <span>Prototyping & usability testing</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-green-600 font-bold">✓</span>
+          <span>Portfolio & case study creation</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tools Section -->
+    <div class="bg-gradient-to-br from-white to-green-50 p-6 rounded-lg mb-6 border-2 border-green-200 hover-lift">
+      <h3 class="font-bold text-green-700 mb-4 text-xl text-center">🛠️ Tools You Will Learn</h3>
+      <div class="flex justify-center items-center gap-4">
+        <div class="tool-icon figma-icon">
+          <span>F</span>
+        </div>
+        <div class="tool-icon ps-icon">
+          <span>Ps</span>
+        </div>
+        <div class="tool-icon ai-icon">
+          <span>Ai</span>
+        </div>
+      </div>
+      <p class="text-center text-gray-600 mt-3 text-sm">Figma • Photoshop • Illustrator</p>
+    </div>
+
+    <!-- Batch Info -->
+    <div class="bg-green-600 text-white py-3 px-6 rounded-lg mb-6 text-center shadow-lg">
+      <p class="font-bold text-xl">📅 Batch Starts On JAN 20</p>
+    </div>
+
+    <!-- Marquee Instructions -->
+    <div class="green-section text-white py-3 px-4 rounded-lg mb-6 marquee-container shadow-lg">
+      <div class="marquee">
+        <span class="inline-block font-semibold text-lg">
+          🎨 Learn Figma, Photoshop & Illustrator | 💼 Build Professional Portfolio | 🚀 20 Days Intensive Training | 📱 Mobile & Web Design | 🎓 Certificate Provided | Limited Seats - Join Now! 🎨
+        </span>
+      </div>
+    </div>
+
+    <!-- Registration Form -->
+    <form action="https://api.web3forms.com/submit" method="POST" class="space-y-5">
+      <input type="hidden" name="access_key" value="d12d53eb-5dfb-4a7c-b528-7f1cbab87cd5" />
+      <input type="hidden" name="subject" value="New UI/UX Course Registration" />
+
+      <!-- Student Information -->
+      <div class="bg-gradient-to-br from-green-50 to-white p-5 rounded-lg border-2 border-green-300 hover-lift">
+        <h3 class="font-bold text-green-700 mb-4 text-lg flex items-center gap-2">
+          <span class="yellow-highlight text-white px-3 py-1 rounded-full text-sm">Join Us!</span>
+          👤 Student Information
+        </h3>
+        
+        <div class="space-y-4">
+          <div>
+            <label class="block font-semibold text-green-700 mb-1">👤 Full Name</label>
+            <input type="text" name="student_name" required class="glow-input w-full p-3 border-2 border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white transition" placeholder="Enter your full name" />
+          </div>
+
+          <div>
+            <label class="block font-semibold text-green-700 mb-1">📧 Email Address</label>
+            <input type="email" name="student_email" required class="glow-input w-full p-3 border-2 border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white transition" placeholder="your.email@example.com" />
+          </div>
+
+          <div>
+            <label class="block font-semibold text-green-700 mb-1">📞 Mobile Number</label>
+            <input type="tel" name="student_phone" required pattern="[0-9]{10}" class="glow-input w-full p-3 border-2 border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white transition" placeholder="10-digit mobile number" />
+          </div>
+
+          <div>
+            <label class="block font-semibold text-green-700 mb-1">🎓 Educational Qualification</label>
+            <select name="qualification" required class="glow-input w-full p-3 border-2 border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white transition">
+              <option value="">-- Select Qualification --</option>
+              <option>High School Student</option>
+              <option>Diploma Student</option>
+              <option>Engineering Student</option>
+              <option>Graduate</option>
+              <option>Working Professional</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block font-semibold text-green-700 mb-1">🏫 College/Institution (if applicable)</label>
+            <input type="text" name="institution" class="glow-input w-full p-3 border-2 border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white transition" placeholder="Your college/school name" />
+          </div>
+
+          <div>
+            <label class="block font-semibold text-green-700 mb-1">🎨 Prior Design Experience?</label>
+            <select name="experience" class="glow-input w-full p-3 border-2 border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white transition">
+              <option value="">-- Select Experience Level --</option>
+              <option>No Experience</option>
+              <option>Basic (Beginner)</option>
+              <option>Intermediate</option>
+              <option>Advanced</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block font-semibold text-green-700 mb-1">💡 Why do you want to learn UI/UX?</label>
+            <textarea name="reason" rows="3" class="glow-input w-full p-3 border-2 border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white transition" placeholder="Tell us your motivation..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <input type="hidden" name="redirect" value="https://web3forms.com/success">
+
+      <div class="text-center">
+        <button type="submit" class="cta-button text-white px-12 py-5 rounded-full text-xl font-black shadow-2xl hover:scale-110 transform transition duration-300 relative">
+          <span class="relative z-10">🚀 JOIN NOW @ ₹499/-</span>
+        </button>
+        <div class="mt-4 flex items-center justify-center gap-2 text-green-700">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          <span class="font-bold text-lg">63740 41335 / 93615 31764</span>
+        </div>
+      </div>
+    </form>
+
+    <!-- Footer -->
+    <div class="mt-8 text-center">
+      <div class="inline-block bg-gradient-to-r from-green-100 to-yellow-100 px-6 py-3 rounded-lg border-2 border-green-200">
+        <p class="text-green-700 font-bold">🌱 www.mseed.in</p>
+        <p class="text-gray-600 text-sm">A unit of Mechnido</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
